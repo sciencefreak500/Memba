@@ -2,7 +2,7 @@ import NewProject from '@/components/NewProject'
 import NewProjectModal from '@/components/NewProjectModal'
 import Head from 'next/head'
 import React from 'react'
-import CardBox from '../components/CardBox'
+import ProjectBox from '../components/ProjectBox'
 
 // dummy data array for cards
 // structure:
@@ -50,7 +50,7 @@ export interface taskInterface {
 export interface projectInterface {
 	id: string
 	name: string
-	priority: string
+	priority: number
 	scratchpad: string
 	created_at: string
 	tasks: taskInterface[]
@@ -60,7 +60,7 @@ const cards: projectInterface[] = [
 	{
 		id: '1',
 		name: 'Project 1',
-		priority: 'high',
+		priority: 5,
 		scratchpad: 'This is a scratchpad',
 		created_at: '2021-01-01:00:00:00',
 		tasks: [
@@ -87,7 +87,7 @@ const cards: projectInterface[] = [
 	{
 		id: '2',
 		name: 'Project 2',
-		priority: 'low',
+		priority: 5,
 		scratchpad: 'This is a scratchpad',
 		created_at: '2021-01-01:00:00:00',
 		tasks: [
@@ -127,9 +127,9 @@ export default function Home() {
 						<NewProjectModal addNewProject={addNewProject} setNewProjectModalOpen={setNewProjectModalOpen}/>
 					)}
 					{cards.map((card, index) => (
-						<CardBox key={index} title={card.name} priority={card.priority} tasks={card.tasks} />
+						<ProjectBox key={index} title={card.name} priority={card.priority} tasks={card.tasks} />
 					))}
-					<NewProject setModalOpen={setNewProjectModalOpen}/>
+					<ProjectBox isCreatorBox={true} setModalOpen={setNewProjectModalOpen}/>
 				</div>
       </main>
     </>
