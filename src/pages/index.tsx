@@ -1,8 +1,8 @@
-import NewProject from '@/components/NewProject'
-import NewProjectModal from '@/components/NewProjectModal'
-import Head from 'next/head'
-import React from 'react'
-import ProjectBox from '../components/ProjectBox'
+import NewProject from "@/components/NewProject";
+import NewProjectModal from "@/components/NewProjectModal";
+import Head from "next/head";
+import React from "react";
+import ProjectBox from "../components/ProjectBox";
 
 // dummy data array for cards
 // structure:
@@ -31,88 +31,87 @@ import ProjectBox from '../components/ProjectBox'
 //  - task_fk
 //  - state (0,1,2)
 export interface subtaskInterface {
-	id: string
-	title: string
-	description: string
-	created_at: string
-	state: 0 | 1 | 2
+  id: string;
+  title: string;
+  description?: string;
+  created_at: string;
+  state: 0 | 1 | 2;
 }
 export interface taskInterface {
-	id: string
-	title: string
-	description: string
-	scratchpad: string
-	state: 0 | 1 | 2
-	is_archived: boolean
-	created_at: string
-	subtasks: subtaskInterface[]
+  id: string;
+  title: string;
+  description?: string;
+  scratchpad?: string;
+  state: 0 | 1 | 2;
+  is_archived: boolean;
+  created_at: string;
+  subtasks: subtaskInterface[];
 }
 export interface projectInterface {
-	id: string
-	name: string
-	priority: number
-	scratchpad: string
-	created_at: string
-	tasks: taskInterface[]
+  id: string;
+  name: string;
+  priority: number;
+  scratchpad?: string;
+  created_at: string;
+  tasks: taskInterface[];
 }
 
 const cards: projectInterface[] = [
-	{
-		id: '1',
-		name: 'Project 1',
-		priority: 5,
-		scratchpad: 'This is a scratchpad',
-		created_at: '2021-01-01:00:00:00',
-		tasks: [
-			{
-				id: '1',
-				title: 'Task 1',
-				description: 'This is a task',
-				scratchpad: 'This is a scratchpad',
-				state: 0,
-				is_archived: false,
-				created_at: '2021-01-01:00:00:00',
-				subtasks: [
-					{
-						id: '1',
-						title: 'Subtask 1',
-						description: 'This is a subtask',
-						created_at: '2021-01-01:00:00:00',
-						state: 0
-					}
-				]
-			}
-		]
-	},
-	{
-		id: '2',
-		name: 'Project 2',
-		priority: 5,
-		scratchpad: 'This is a scratchpad',
-		created_at: '2021-01-01:00:00:00',
-		tasks: [
-			{
-				id: '1',
-				title: 'Task 1',
-				description: 'This is a task',
-				scratchpad: 'This is a scratchpad',
-				state: 0,
-				is_archived: false,
-				created_at: '2021-01-01:00:00:00',
-				subtasks: []
-			}
-		]
-	}
-]
-
+  {
+    id: "1",
+    name: "Project 1",
+    priority: 5,
+    scratchpad: "This is a scratchpad",
+    created_at: "2021-01-01:00:00:00",
+    tasks: [
+      {
+        id: "1",
+        title: "Task 1",
+        description: "This is a task",
+        scratchpad: "This is a scratchpad",
+        state: 0,
+        is_archived: false,
+        created_at: "2021-01-01:00:00:00",
+        subtasks: [
+          {
+            id: "1",
+            title: "Subtask 1",
+            description: "This is a subtask",
+            created_at: "2021-01-01:00:00:00",
+            state: 0,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "2",
+    name: "Project 2",
+    priority: 5,
+    scratchpad: "This is a scratchpad",
+    created_at: "2021-01-01:00:00:00",
+    tasks: [
+      {
+        id: "1",
+        title: "Task 1",
+        description: "This is a task",
+        scratchpad: "This is a scratchpad",
+        state: 0,
+        is_archived: false,
+        created_at: "2021-01-01:00:00:00",
+        subtasks: [],
+      },
+    ],
+  },
+];
 
 const addNewProject = (newProject: projectInterface) => {
-	cards.push(newProject)
-}
+  cards.push(newProject);
+};
 
 export default function Home() {
-	const [newProjectModalOpen, setNewProjectModalOpen] = React.useState(false)
-	
+  const [newProjectModalOpen, setNewProjectModalOpen] = React.useState(false);
+
   return (
     <>
       <Head>
@@ -122,16 +121,27 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-				<div className="grid grid-cols-3 gap-5 max-w-5xl mx-auto">
-					{newProjectModalOpen && (
-						<NewProjectModal addNewProject={addNewProject} setNewProjectModalOpen={setNewProjectModalOpen}/>
-					)}
-					{cards.map((card, index) => (
-						<ProjectBox key={index} title={card.name} priority={card.priority} tasks={card.tasks} />
-					))}
-					<ProjectBox isCreatorBox={true} setModalOpen={setNewProjectModalOpen}/>
-				</div>
+        <div className="grid grid-cols-3 gap-5 max-w-5xl mx-auto">
+          {newProjectModalOpen && (
+            <NewProjectModal
+              addNewProject={addNewProject}
+              setNewProjectModalOpen={setNewProjectModalOpen}
+            />
+          )}
+          {cards.map((card, index) => (
+            <ProjectBox
+              key={index}
+              title={card.name}
+              priority={card.priority}
+              tasks={card.tasks}
+            />
+          ))}
+          <ProjectBox
+            isCreatorBox={true}
+            setModalOpen={setNewProjectModalOpen}
+          />
+        </div>
       </main>
     </>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const TaskItem = ({ title, children }: any) => {
   return (
@@ -8,7 +8,7 @@ const TaskItem = ({ title, children }: any) => {
         {children}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default TaskItem
+export default TaskItem;

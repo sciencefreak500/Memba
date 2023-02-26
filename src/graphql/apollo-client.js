@@ -1,8 +1,8 @@
-import {ApolloClient, InMemoryCache, HttpLink} from '@apollo/client';
+import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
 
 const apolloClient = new ApolloClient({
   link: new HttpLink({
-    uri: 'https://hasura.dappd.net/v1/graphql',
+    uri: "https://hasura.dappd.net/v1/graphql",
     fetch,
     headers: {},
   }),

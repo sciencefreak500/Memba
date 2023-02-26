@@ -1,8 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./src/**/*.{js,ts,jsx,tsx}"],
   safelist: [
     "bg-priority-10",
     "bg-priority-9",
@@ -30,9 +28,8 @@ module.exports = {
           2: "#55b6b9",
           1: "#4299E1",
         },
-        
-      }
+      },
     },
   },
   plugins: [],
-}
+};
